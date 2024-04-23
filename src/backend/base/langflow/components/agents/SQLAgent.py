@@ -26,6 +26,9 @@ class SQLAgentComponent(CustomComponent):
         database_uri: str,
         verbose: bool = False,
     ) -> Union[AgentExecutor, Callable]:
-        db = SQLDatabase.from_uri(database_uri)
+        schema = os.getenv("LANGFLOW_DATABASE_SCHEMA")
+        if schema is None:
+            schema = "public"
+        db = SQLDatabase.from_uri(database_uri, schema=schema)
         toolkit = SQLDatabaseToolkit(db=db, llm=llm)
         return create_sql_agent(llm=llm, toolkit=toolkit)

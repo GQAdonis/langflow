@@ -43,6 +43,10 @@ class Settings(BaseSettings):
             logger.debug("No database_url provided, trying LANGFLOW_DATABASE_URL env variable")
             if langflow_database_url := os.getenv("LANGFLOW_DATABASE_URL"):
                 value = langflow_database_url
+
+                schema = os.getenv("LANGFLOW_DATABASE_SCHEMA")
+                if schema is not None:
+                    value = f"{value}?options=-csearch_path={schema}"
                 logger.debug("Using LANGFLOW_DATABASE_URL env variable.")
             else:
                 logger.debug("No DATABASE_URL env variable, using sqlite database")

@@ -43,7 +43,10 @@ def run_migrations_offline() -> None:
 
     """
     url = os.getenv("LANGFLOW_DATABASE_URL")
+    schema = os.getenv("LANGFLOW_DATABASE_SCHEMA")
     url = url or config.get_main_option("sqlalchemy.url")
+    if schema is not None:
+        url = f"{url}?options=-csearch_path={schema}"
     context.configure(
         url=url,
         target_metadata=target_metadata,

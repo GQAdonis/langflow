@@ -45,7 +45,7 @@ class SQLExecutorComponent(CustomComponent):
     ) -> Text:
         error = None
         try:
-            database = SQLDatabase.from_uri(database_url)
+            database = SQLDatabase.from_uri(database_url, schema="langflow")
         except Exception as e:
             raise ValueError(f"An error occurred while connecting to the database: {e}")
         try:

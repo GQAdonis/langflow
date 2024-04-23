@@ -162,7 +162,10 @@ class SQLAgent(CustomAgentExecutor):
     @classmethod
     def from_toolkit_and_llm(cls, llm: BaseLanguageModel, database_uri: str, **kwargs: Any):
         """Construct an SQL agent from an LLM and tools."""
-        db = SQLDatabase.from_uri(database_uri)
+        schema = os.getenv("LANGFLOW_DATABASE_SCHEMA")
+        if schema is None:
+            schema = "public"
+        db = SQLDatabase.from_uri(database_uridatabase_url, schema=schema)
         toolkit = SQLDatabaseToolkit(db=db, llm=llm)
 
         # The right code should be this, but there is a problem with tools = toolkit.get_tools()

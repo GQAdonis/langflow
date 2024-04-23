@@ -19,4 +19,4 @@ class SQLDatabaseComponent(CustomComponent):
 
     def build(self, uri: str) -> SQLDatabase:
         uri = self.clean_up_uri(uri)
-        return SQLDatabase.from_uri(uri)
+        return SQLDatabase.from_uri(uridatabase_url, schema="langflow")
