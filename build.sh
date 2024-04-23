@@ -1,1 +1,1 @@
-docker build -f ./build_and_push.Dockerfile -t tribehealth/langflow:latest.1 --push --platform=linux/amd64 .
+docker build -f ./build_and_push.Dockerfile -t tribehealth/langflow:latest.2 --push --platform=linux/amd64 .
