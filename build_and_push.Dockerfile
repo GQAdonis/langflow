@@ -47,7 +47,7 @@ ENV PATH="$POETRY_HOME/bin:$VENV_PATH/bin:$PATH"
 # Used to build deps + create our virtual environment
 ################################
 FROM python-base as builder-base
-RUN
+
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
     # deps for installing poetry
